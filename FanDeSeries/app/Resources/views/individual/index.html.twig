@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Individual list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Pseudo</th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Picture</th>
+                <th>Password</th>
+                <th>Dateregistration</th>
+                <th>Birthdate</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for individual in individuals %}
+            <tr>
+                <td><a href="{{ path('individual_show', { 'id': individual.id }) }}">{{ individual.id }}</a></td>
+                <td>{{ individual.pseudo }}</td>
+                <td>{{ individual.firstName }}</td>
+                <td>{{ individual.lastName }}</td>
+                <td>{{ individual.picture }}</td>
+                <td>{{ individual.password }}</td>
+                <td>{% if individual.dateRegistration %}{{ individual.dateRegistration|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if individual.birthDate %}{{ individual.birthDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('individual_show', { 'id': individual.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('individual_edit', { 'id': individual.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('individual_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

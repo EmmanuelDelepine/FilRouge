@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Realisator list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for realisator in realisators %}
+            <tr>
+                <td><a href="{{ path('realisator_show', { 'id': realisator.id }) }}">{{ realisator.id }}</a></td>
+                <td>{{ realisator.firstName }}</td>
+                <td>{{ realisator.lastName }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('realisator_show', { 'id': realisator.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('realisator_edit', { 'id': realisator.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('realisator_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}
